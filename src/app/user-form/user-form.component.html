@@ -1,0 +1,55 @@
+<div>
+  <h1>User Form</h1>
+  <form [formGroup] = "userFormGroup" (submit)="addToTable(userFormGroup)">
+    <fieldset><br>
+    First Name: <input type="text" placeholder="First Name" formControlName="fName"><br><br>
+    Last Name: <input type="text" placeholder="Last Name" formControlName="lName"><br><br>
+    Gender: <input type="radio" value="male" formControlName="gender">Male
+    <input type="radio" value="female" formControlName="gender">Female
+    <input type="radio" value="Others" formControlName="gender">Others
+  <br><br>
+  Age:<select formControlName="age">
+  <option *ngFor="let number of numbers">{{number}}</option>
+  </select>
+  <br><br>
+  <button type="submit">Submit</button>
+
+  </fieldset>
+  </form>
+  <div>
+  Select your color: <input type="radio" [checked]="color === 'red'" (click)="assignColor('red')">Red
+  <input type="radio" value="blue" [checked]="color === 'blue'" (click)="assignColor('blue')">Blue
+  <input type="radio" value="yellow" [checked]="color === 'yellow'" (click)="assignColor('yellow')" >Yellow
+  <input type="radio" value="green" [checked]="color === 'green'" (click)="assignColor('green')">Green<br><br>
+  </div>
+  <div [ngSwitch]="color">
+    <div *ngSwitchCase="'red'">red</div>
+    <div *ngSwitchCase="'blue'">blue</div>
+    <div *ngSwitchCase="'yellow'">yellow</div>
+    <div *ngSwitchCase="'green'">green</div>
+  </div>
+</div>
+
+<div *ngIf="inserted">
+  <br>
+  <br>
+  <label>User Information</label>
+  <br>
+  <br>
+
+  <table border="1">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+
+    </tr>
+    <tr *ngFor="let detail of details">
+      <td>{{detail.fName}}</td>
+      <td>{{detail.lName}}</td>
+      <td>{{detail.gender}}</td>
+      <td>{{detail.age}}</td>
+    </tr>
+  </table>
+</div>
